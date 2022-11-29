@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpShop
+namespace CSharpShopBonus
 {
-    public class Prodotto
+    public class ProdottoBonus
     {
-        private int codice; 
+
+        private int codice;
         private string nome = "prodotto";
         private string descrizione;
         private int prezzo;
         private int iva;
 
-        public Prodotto()
+        public ProdottoBonus()
         {
 
         }
-        public Prodotto(int codice)
+        public ProdottoBonus(int codice)
         {
             this.codice = codice;
         }
@@ -44,19 +43,20 @@ namespace CSharpShop
         {
             return nome;
         }
-       public string GetIva()
+        public string GetIva()
         {
             return iva + "%";
         }
 
-        public void SetNome(string nome) {
+        public void SetNome(string nome)
+        {
 
             this.nome = nome;
         }
 
         public void SetDescrizione(string descrizione)
         {
-            this.descrizione= descrizione;
+            this.descrizione = descrizione;
         }
 
         public void SetPrezzo(int prezzo)
@@ -71,12 +71,24 @@ namespace CSharpShop
 
         public int GetPrezzoConIva()
         {
-            return prezzo*iva/100 ;
+            return prezzo * iva / 100;
         }
 
         public string GetNomeEsteso()
         {
             return nome + codice;
         }
+
+        public string PadMethod()
+        {
+            string codiceStringaPad = this.codice.ToString();
+
+            for(int i = codiceStringaPad.Length; i<8; i++)
+            {
+                codiceStringaPad = "0" + codiceStringaPad;
+            }
+            return codiceStringaPad;
+        }
+
     }
 }
