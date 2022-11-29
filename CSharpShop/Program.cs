@@ -7,7 +7,6 @@ int numeroRandom = random.Next(0, 1000);
 
 Prodotto product1 = new Prodotto(numeroRandom);
 
-Console.WriteLine(product1);
 
 
 
