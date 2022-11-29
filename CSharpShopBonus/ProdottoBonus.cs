@@ -8,9 +8,8 @@ namespace CSharpShopBonus
 {
     public class ProdottoBonus
     {
-
         private int codice;
-        private string nome = "prodotto";
+        private string nome;
         private string descrizione;
         private int prezzo;
         private int iva;
@@ -19,14 +18,22 @@ namespace CSharpShopBonus
         {
 
         }
-        public ProdottoBonus(int codice)
+        public ProdottoBonus(int codice, string nome = "prodotto")
         {
+            this.nome = nome;
             this.codice = codice;
+        }
+        public ProdottoBonus(int codice, int prezzo, int iva, string nome="prodotto")
+        {
+            this.nome = nome;
+            this.codice = codice;
+            this.prezzo = prezzo;
+            this.iva = iva;
         }
 
         public int GetCodice()
         {
-            return codice;
+            return this.codice;
         }
 
         public string GetPrezzoSenzaIva()
@@ -36,6 +43,20 @@ namespace CSharpShopBonus
 
         public string GetDescrizione()
         {
+            int prezzoSenzaIva = this.prezzo;
+            int prezzoConIva = this.GetPrezzoConIva();
+            
+
+            this.descrizione = $@" 
+    nome del Prodotto: {this.nome + this.codice}
+    codice: {this.codice}
+    prezzo del Prodotto: {prezzoSenzaIva}
+    prezzo con Iva: {prezzoConIva}
+    iva: {this.iva}
+
+-----------------------------------------------------
+";
+
             return descrizione;
         }
 
@@ -54,11 +75,6 @@ namespace CSharpShopBonus
             this.nome = nome;
         }
 
-        public void SetDescrizione(string descrizione)
-        {
-            this.descrizione = descrizione;
-        }
-
         public void SetPrezzo(int prezzo)
         {
             this.prezzo = prezzo;
@@ -71,7 +87,8 @@ namespace CSharpShopBonus
 
         public int GetPrezzoConIva()
         {
-            return prezzo * iva / 100;
+            int prezzoConIva = this.prezzo + (this.prezzo * this.iva / 100);
+            return prezzoConIva;
         }
 
         public string GetNomeEsteso()

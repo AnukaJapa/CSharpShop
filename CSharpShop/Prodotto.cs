@@ -37,6 +37,19 @@ namespace CSharpShop
 
         public string GetDescrizione()
         {
+            int prezzoSenzaIva = this.prezzo;
+            int prezzoConIva = this.GetPrezzoConIva();
+
+
+            this.descrizione = $@" 
+    nome del Prodotto: {this.nome + this.codice}
+    codice: {this.codice}
+    prezzo del Prodotto: {prezzoSenzaIva}
+    prezzo con Iva: {prezzoConIva}
+    iva: {this.iva}
+
+-----------------------------------------------------
+";
             return descrizione;
         }
 
